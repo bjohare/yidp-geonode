@@ -1,4 +1,5 @@
 version: '2.2'
+
 services:
 
   db:
@@ -103,26 +104,28 @@ services:
       - '.:/usr/src/app'
       - /var/run/docker.sock:/var/run/docker.sock
       - geoserver-data-dir:/geoserver_data/data
+    ports:
+      - "8000:8000"
     environment:
       - DEBUG=True
     env_file:
       - ./scripts/docker/env/production/django.env
 
-  geonode:
-    image: geonode/nginx:geoserver
-    restart: unless-stopped
-    container_name: nginx4${COMPOSE_PROJECT_NAME}
-    stdin_open: true
-    # tty: true
-    labels:
-        org.geonode.component: nginx
-        org.geonode.instance.name: geonode
-    depends_on:
-      - django
-      - celery
-      - geoserver
-    ports:
-      - "80:80"
+  # geonode:
+  #   image: geonode/nginx:geoserver
+  #   restart: unless-stopped
+  #   container_name: nginx4${COMPOSE_PROJECT_NAME}
+  #   stdin_open: true
+  #   # tty: true
+  #   labels:
+  #       org.geonode.component: nginx
+  #       org.geonode.instance.name: geonode
+  #   depends_on:
+  #     - django
+  #     - celery
+  #     - geoserver
+  #   ports:
+  #     - "80:80"
 
 volumes:
   geoserver-data-dir:

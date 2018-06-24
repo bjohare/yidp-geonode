@@ -217,6 +217,26 @@ Y9HKeIQPcy5Cp08KQNpRHQbjpLItDHv12GvkSeXp6OxaUETv3",
                 "created": datetime.datetime.now().strftime("%Y-%m-%d %H:%M"),
                 "updated": datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
             }
+        },
+        {
+            "model": "oauth2_provider.application",
+            "pk": 1002,
+            "fields": {
+                "skip_authorization": False,
+                "redirect_uris": '',
+                "name": 'YidpCoreUI',
+                "authorization_grant_type": "password",
+                "client_type": "confidential",
+                "client_id": "nbH4LKwhGrN4M8OPloE8yndqHK0x9y5hhjz6HjlT",
+                "client_secret": "\
+                emvozCHanvJMX27TTOurZMxjokPGdYKVEI1NgaCRKFYF6XD18JSau8puT0mWdxsDMTD\
+                719sZotHhrOt2cmKgJs1lm1kA14Dsr7BeL2FksLTNN4lL50MsQ0i752gzNDfy",
+                "user": [
+                    "admin"
+                ],
+                "created": datetime.datetime.now().strftime("%Y-%m-%d %H:%M"),
+                "updated": datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
+            }
         }
     ]
     with open('/tmp/default_oauth_apps_docker.json', 'w') as fixturefile:

@@ -658,8 +658,10 @@ THEME_ACCOUNT_CONTACT_EMAIL = os.getenv(
 
 on_travis = ast.literal_eval(os.environ.get('ON_TRAVIS', 'False'))
 core_tests = ast.literal_eval(os.environ.get('TEST_RUN_CORE', 'False'))
-internal_apps_tests = ast.literal_eval(os.environ.get('TEST_RUN_INTERNAL_APPS', 'False'))
-integration_tests = ast.literal_eval(os.environ.get('TEST_RUN_INTEGRATION', 'False'))
+internal_apps_tests = ast.literal_eval(
+    os.environ.get('TEST_RUN_INTERNAL_APPS', 'False'))
+integration_tests = ast.literal_eval(
+    os.environ.get('TEST_RUN_INTEGRATION', 'False'))
 
 # Setting a custom test runner to avoid running the tests for
 # some problematic 3rd party apps
@@ -763,14 +765,15 @@ OGC_SERVER = {
         % os.path.abspath(os.path.join(PROJECT_ROOT, os.pardir)),
         # Set to name of database in DATABASES dictionary to enable
         # 'datastore',
-        'DATASTORE': os.environ.get('DEFAULT_BACKEND_DATASTORE',''),
+        'DATASTORE': os.environ.get('DEFAULT_BACKEND_DATASTORE', ''),
         'PG_GEOGIG': False,
         # 'CACHE': ".cache"  # local cache file to for HTTP requests
         'TIMEOUT': 10  # number of seconds to allow for HTTP requests
     }
 }
 
-USE_GEOSERVER = 'geonode.geoserver' in INSTALLED_APPS and OGC_SERVER['default']['BACKEND'] == 'geonode.geoserver'
+USE_GEOSERVER = 'geonode.geoserver' in INSTALLED_APPS and OGC_SERVER[
+    'default']['BACKEND'] == 'geonode.geoserver'
 
 # Uploader Settings
 DATA_UPLOAD_MAX_NUMBER_FIELDS = 100000
@@ -915,19 +918,24 @@ DEFAULT_MAP_CENTER = (0, 0)
 # maximum zoom is between 12 and 15 (for Google Maps, coverage varies by area)
 DEFAULT_MAP_ZOOM = 0
 
-ALT_OSM_BASEMAPS = ast.literal_eval(os.environ.get('ALT_OSM_BASEMAPS', 'False'))
-CARTODB_BASEMAPS = ast.literal_eval(os.environ.get('CARTODB_BASEMAPS', 'False'))
+ALT_OSM_BASEMAPS = ast.literal_eval(
+    os.environ.get('ALT_OSM_BASEMAPS', 'False'))
+CARTODB_BASEMAPS = ast.literal_eval(
+    os.environ.get('CARTODB_BASEMAPS', 'False'))
 STAMEN_BASEMAPS = ast.literal_eval(os.environ.get('STAMEN_BASEMAPS', 'False'))
-THUNDERFOREST_BASEMAPS = ast.literal_eval(os.environ.get('THUNDERFOREST_BASEMAPS', 'False'))
+THUNDERFOREST_BASEMAPS = ast.literal_eval(
+    os.environ.get('THUNDERFOREST_BASEMAPS', 'False'))
 MAPBOX_ACCESS_TOKEN = os.environ.get('MAPBOX_ACCESS_TOKEN', None)
 BING_API_KEY = os.environ.get('BING_API_KEY', None)
 GOOGLE_API_KEY = os.environ.get('GOOGLE_API_KEY', None)
 
 # handle timestamps like 2017-05-30 16:04:00.719 UTC
 if django.VERSION[0] == 1 and django.VERSION[1] >= 9:
-    _DATETIME_INPUT_FORMATS = ['%Y-%m-%d %H:%M:%S.%f %Z', '%Y-%m-%dT%H:%M:%S.%f', '%Y-%m-%dT%H:%M:%S%Z']
+    _DATETIME_INPUT_FORMATS = ['%Y-%m-%d %H:%M:%S.%f %Z',
+                               '%Y-%m-%dT%H:%M:%S.%f', '%Y-%m-%dT%H:%M:%S%Z']
 else:
-    _DATETIME_INPUT_FORMATS = ('%Y-%m-%d %H:%M:%S.%f %Z', '%Y-%m-%dT%H:%M:%S.%f', '%Y-%m-%dT%H:%M:%S%Z')
+    _DATETIME_INPUT_FORMATS = (
+        '%Y-%m-%d %H:%M:%S.%f %Z', '%Y-%m-%dT%H:%M:%S.%f', '%Y-%m-%dT%H:%M:%S%Z')
 DATETIME_INPUT_FORMATS = DATETIME_INPUT_FORMATS + _DATETIME_INPUT_FORMATS
 
 MAP_BASELAYERS = [{
@@ -1362,8 +1370,10 @@ CELERY_SEND_TASK_SENT_EVENT = True
 
 # AWS S3 Settings
 
-S3_STATIC_ENABLED = ast.literal_eval(os.environ.get('S3_STATIC_ENABLED', 'False'))
-S3_MEDIA_ENABLED = ast.literal_eval(os.environ.get('S3_MEDIA_ENABLED', 'False'))
+S3_STATIC_ENABLED = ast.literal_eval(
+    os.environ.get('S3_STATIC_ENABLED', 'False'))
+S3_MEDIA_ENABLED = ast.literal_eval(
+    os.environ.get('S3_MEDIA_ENABLED', 'False'))
 
 # Required to run Sync Media to S3
 AWS_BUCKET_NAME = os.environ.get('S3_BUCKET_NAME', '')
@@ -1467,7 +1477,8 @@ RISKS = {'DEFAULT_LOCATION': None,
 ADMIN_MODERATE_UPLOADS = False
 
 # add following lines to your local settings to enable monitoring
-MONITORING_ENABLED = ast.literal_eval(os.environ.get('MONITORING_ENABLED', 'False'))
+MONITORING_ENABLED = ast.literal_eval(
+    os.environ.get('MONITORING_ENABLED', 'False'))
 MONITORING_HOST_NAME = os.getenv("MONITORING_HOST_NAME", HOSTNAME)
 MONITORING_SERVICE_NAME = 'geonode'
 
@@ -1592,11 +1603,11 @@ if USE_WORLDMAP:
     GEONODE_CLIENT_LOCATION = '/static/worldmap_client/'
     GAZETTEER_DB_ALIAS = 'default'
     INSTALLED_APPS += (
-            'geoexplorer-worldmap',
-            'geonode.contrib.worldmap.gazetteer',
-            'geonode.contrib.worldmap.wm_extra',
-            'geonode.contrib.createlayer',
-        )
+        'geoexplorer-worldmap',
+        'geonode.contrib.worldmap.gazetteer',
+        'geonode.contrib.worldmap.wm_extra',
+        'geonode.contrib.createlayer',
+    )
     GAZETTEER_FULLTEXTSEARCH = False
     WM_COPYRIGHT_URL = "http://gis.harvard.edu/"
     WM_COPYRIGHT_TEXT = "Center for Geographic Analysis"
@@ -1613,6 +1624,12 @@ if USE_WORLDMAP:
     # these are optionals
     GOOGLE_MAPS_API_KEY = os.getenv('GOOGLE_MAPS_API_KEY', 'your-key-here')
     USE_HYPERMAP = strtobool(os.getenv('USE_HYPERMAP', 'False'))
-    HYPERMAP_REGISTRY_URL = os.getenv('HYPERMAP_REGISTRY_URL', 'http://localhost:8001')
-    SOLR_URL = os.getenv('SOLR_URL', 'http://localhost:8983/solr/hypermap/select/')
+    HYPERMAP_REGISTRY_URL = os.getenv(
+        'HYPERMAP_REGISTRY_URL', 'http://localhost:8001')
+    SOLR_URL = os.getenv(
+        'SOLR_URL', 'http://localhost:8983/solr/hypermap/select/')
     MAPPROXY_URL = os.getenv('MAPPROXY_URL', 'http://localhost:8001')
+
+
+USE_X_FORWARDED_HOST = True
+FORCE_SCRIPT_NAME = '/geonode'
