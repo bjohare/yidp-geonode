@@ -49,7 +49,7 @@ http://{public_fqdn}/ >> {override_fn}".format(**envs), pty=True)
     current_allowed.extend(
         ['{}'.format(pub_ip), '{}:{}'.format(pub_ip, pub_port)])
     allowed_hosts = ['"{}"'.format(
-        c) for c in current_allowed] + ['"geonode"', '"django"']
+        c) for c in current_allowed] + ['"geonode"', '"django"',]
 
     ctx.run('echo export ALLOWED_HOSTS="\\"{}\\"" >> {}'.format(
         allowed_hosts, override_env), pty=True)
@@ -211,6 +211,26 @@ def _prepare_oauth_fixture():
                 "client_secret": "\
 rCnp5txobUo83EpQEblM8fVj3QT5zb5qRfxNsuPzCqZaiRyIoxM4jdgMiZKFfePBHYXCLd7B8NlkfDB\
 Y9HKeIQPcy5Cp08KQNpRHQbjpLItDHv12GvkSeXp6OxaUETv3",
+                "user": [
+                    "admin"
+                ],
+                "created": datetime.datetime.now().strftime("%Y-%m-%d %H:%M"),
+                "updated": datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
+            }
+        },
+        {
+            "model": "oauth2_provider.application",
+            "pk": 1002,
+            "fields": {
+                "skip_authorization": False,
+                "redirect_uris": '',
+                "name": 'YidpCoreUI',
+                "authorization_grant_type": "password",
+                "client_type": "confidential",
+                "client_id": "nbH4LKwhGrN4M8OPloE8yndqHK0x9y5hhjz6HjlT",
+                "client_secret": "\
+                emvozCHanvJMX27TTOurZMxjokPGdYKVEI1NgaCRKFYF6XD18JSau8puT0mWdxsDMTD\
+                719sZotHhrOt2cmKgJs1lm1kA14Dsr7BeL2FksLTNN4lL50MsQ0i752gzNDfy",
                 "user": [
                     "admin"
                 ],
