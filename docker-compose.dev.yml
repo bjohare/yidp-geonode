@@ -86,7 +86,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - geoserver-data-dir:/geoserver_data/data
     environment:
-      - DOCKER_HOST_IP=geonode
+      - DOCKER_HOST_IP=yidp-geonode.geoweb.io
     env_file:
       - ./scripts/docker/env/production/geoserver.env
     ports:

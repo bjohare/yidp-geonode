@@ -229,8 +229,8 @@ Y9HKeIQPcy5Cp08KQNpRHQbjpLItDHv12GvkSeXp6OxaUETv3",
                 "client_type": "confidential",
                 "client_id": "nbH4LKwhGrN4M8OPloE8yndqHK0x9y5hhjz6HjlT",
                 "client_secret": "\
-                emvozCHanvJMX27TTOurZMxjokPGdYKVEI1NgaCRKFYF6XD18JSau8puT0mWdxsDMTD\
-                719sZotHhrOt2cmKgJs1lm1kA14Dsr7BeL2FksLTNN4lL50MsQ0i752gzNDfy",
+emvozCHanvJMX27TTOurZMxjokPGdYKVEI1NgaCRKFYF6XD18JSau8puT0mWdxsDMTD\
+719sZotHhrOt2cmKgJs1lm1kA14Dsr7BeL2FksLTNN4lL50MsQ0i752gzNDfy",
                 "user": [
                     "admin"
                 ],
