@@ -39,7 +39,8 @@ services:
 
   celery:
     restart: unless-stopped
-    image: geonode/geonode:latest
+    #image: geonode/geonode:latest
+    build: .
     container_name: celery4${COMPOSE_PROJECT_NAME}
     stdin_open: true
     # tty: true
@@ -88,6 +89,8 @@ services:
       - DOCKER_HOST_IP=geonode
     env_file:
       - ./scripts/docker/env/production/geoserver.env
+    ports:
+      - "8080:8080"
 
   django:
     build: .
@@ -110,22 +113,24 @@ services:
       - DEBUG=True
     env_file:
       - ./scripts/docker/env/production/django.env
+    ports:
+      - "8000:8000"
 
-  # geonode:
-  #   image: geonode/nginx:geoserver
-  #   restart: unless-stopped
-  #   container_name: nginx4${COMPOSE_PROJECT_NAME}
-  #   stdin_open: true
-  #   # tty: true
-  #   labels:
-  #       org.geonode.component: nginx
-  #       org.geonode.instance.name: geonode
-  #   depends_on:
-  #     - django
-  #     - celery
-  #     - geoserver
-  #   ports:
-  #     - "80:80"
+#  geonode:
+#    image: geonode/nginx:geoserver
+#    restart: unless-stopped
+#    container_name: nginx4${COMPOSE_PROJECT_NAME}
+#    stdin_open: true
+#    # tty: true
+#    labels:
+#        org.geonode.component: nginx
+#        org.geonode.instance.name: geonode
+#    depends_on:
+#      - django
+#      - celery
+#      - geoserver
+#    ports:
+#      - "80:80"
 
 volumes:
   geoserver-data-dir:

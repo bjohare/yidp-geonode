@@ -49,7 +49,7 @@ http://{public_fqdn}/ >> {override_fn}".format(**envs), pty=True)
     current_allowed.extend(
         ['{}'.format(pub_ip), '{}:{}'.format(pub_ip, pub_port)])
     allowed_hosts = ['"{}"'.format(
-        c) for c in current_allowed] + ['"geonode"', '"django"']
+        c) for c in current_allowed] + ['"geonode"', '"django"',]
 
     ctx.run('echo export ALLOWED_HOSTS="\\"{}\\"" >> {}'.format(
         allowed_hosts, override_env), pty=True)
