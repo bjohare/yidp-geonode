@@ -980,6 +980,7 @@ class DocumentResource(CommonModelApi):
             # Probe Remote Services
             formatted_obj['store_type'] = 'dataset'
             formatted_obj['online'] = True
+            formatted_obj['doc_url'] = obj.doc_url
 
             formatted_objects.append(formatted_obj)
         return formatted_objects
