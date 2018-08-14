@@ -733,6 +733,8 @@ class LayerResource(CommonModelApi):
             formatted_obj['default_style'] = self.default_style.dehydrate(
                 bundle, for_list=True)
 
+            formatted_obj['featureInfo'] = obj.attribute_config()
+
             if self.links.use_in == 'all' or self.links.use_in == 'list':
                 formatted_obj['links'] = self.dehydrate_links(
                     bundle)
