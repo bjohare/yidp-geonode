@@ -30,6 +30,8 @@ from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse
 from django.core.files.storage import FileSystemStorage
 
+from django.utils.functional import cached_property
+
 from geonode.base.models import ResourceBase, ResourceBaseManager, resourcebase_post_save
 from geonode.people.utils import get_valid_user
 from agon_ratings.models import OverallRating
@@ -206,7 +208,7 @@ class Layer(ResourceBase):
         else:
             return self.alternate
 
-    @property
+    @cached_property
     def attributes(self):
         return self.attribute_set.exclude(attribute='the_geom').order_by('display_order')
 
@@ -257,11 +259,13 @@ class Layer(ResourceBase):
     def get_absolute_url(self):
         # return reverse('layer_detail', args=(self.service_typename,))
         return reverse('layer_detail', args=(self.alternate,))
-
+    
+    @cached_property
     def attribute_config(self):
         # Get custom attribute sort order and labels if any
         cfg = {}
-        visible_attributes = self.attribute_set.visible()
+        #visible_attributes = self.attribute_set.visible()
+        visible_attributes = self.attributes.visible()
         if (visible_attributes.count() > 0):
             cfg["getFeatureInfo"] = {
                 "fields": [l.attribute for l in visible_attributes],
