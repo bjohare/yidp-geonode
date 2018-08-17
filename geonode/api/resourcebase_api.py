@@ -715,6 +715,7 @@ class LayerResource(CommonModelApi):
             formatted_obj['owner_name'] = full_name
             if obj.category:
                 formatted_obj['category__gn_description'] = obj.category.gn_description
+                formatted_obj['category__identifier'] = obj.category.identifier
             if obj.group:
                 formatted_obj['group'] = obj.group
                 try:
