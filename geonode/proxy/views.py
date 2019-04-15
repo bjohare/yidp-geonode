@@ -27,7 +27,7 @@ import requests
 import tempfile
 import traceback
 
-from slugify import Slugify
+from slugify.main import Slugify
 from httplib import HTTPConnection, HTTPSConnection
 from urlparse import urlsplit, urljoin
 from django.conf import settings
