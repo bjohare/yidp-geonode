@@ -97,8 +97,8 @@ def prepare(ctx):
 @task
 def fixtures(ctx):
     print "**************************fixtures********************************"
-    ctx.run("django-admin.py loaddata sample_admin \
---settings={0}".format(_localsettings()), pty=True)
+#    ctx.run("django-admin.py loaddata sample_admin \
+# --settings={0}".format(_localsettings()), pty=True)
     ctx.run("django-admin.py loaddata /tmp/default_oauth_apps_docker.json \
 --settings={0}".format(_localsettings()), pty=True)
     ctx.run("django-admin.py loaddata initial_data.json \
@@ -193,8 +193,8 @@ def _prepare_oauth_fixture():
     # print "Public Hostname or IP is {0}".format(pub_ip)
     pub_port = _geonode_public_port()
     # print "Public PORT is {0}".format(pub_port)
-    redirect_uris = "{0}:{1}/geoserver/index.html".format(
-        os.environ.get('SITEURL').rstrip('/'), pub_port)
+    redirect_uris = "{0}/geoserver/index.html".format(
+        os.environ.get('SITEURL').rstrip('/'))
     from django.conf import settings
     redirect_uris = redirect_uris
     default_fixture = [
